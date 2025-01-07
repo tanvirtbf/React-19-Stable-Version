@@ -1,8 +1,8 @@
 import React from 'react'
 
-const Text = () => {
+const Text = ({num=0}={}) => {
   return (
-    <div>Text</div>
+    <span style={{fontSize: '24px', paddingRight: '20px'}}>{num}</span>
   )
 }
 
