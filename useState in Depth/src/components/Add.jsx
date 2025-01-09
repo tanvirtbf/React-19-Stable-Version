@@ -1,8 +1,10 @@
 import React from 'react'
 
-const Add = ({result=0} = {}) => {
+const Add = ({handleOfClick} = {}) => {
+  console.log(result)
+  console.log('Add.jsx Running!')
   return (
-    <h1>Answer is : {result}</h1>
+    <h1 onClick={handleOfClick}>Answer is : {result}</h1>
   )
 }
 

@@ -1,32 +1,34 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import "./App.css";
 import Text from "./components/Text";
 import Add from "./components/Add";
 
 function App() {
+  console.log('App Running!')
 
-  const [num1, setNum1] = useState(null)
-  const [num2, setNum2] = useState(null)
-
-  const [add, setAdd] = useState(null)
+  const [add, setAdd] = useState(0)
 
   function handleClick(){
     setAdd(Number(num1) + Number(num2))
   }
 
+  const handleOfClick = () => {
+    console.log('Handle Of Click!~')
+  }
+
   return (
     <>
       <div>
-        <input value={num1} type="text" onChange={(e)=> setNum1(e.target.value)} />
-        <input value={num2} type="text" onChange={(e)=> setNum2(e.target.value)} />
+        <input  type="text" />
+        <input  type="text" />
         <button onClick={handleClick}>ADD</button>
       </div>
       <div>
-        <Text num={num1} />
-        <Text num={num2} />
+        <Text  handleOfClick={handleOfClick}  />
+        <Text  handleOfClick={handleOfClick} />
       </div>
       <div>
-        <Add result={add} />
+        <Add result={add} handleOfClick={handleOfClick} />
       </div>
     </>
   );

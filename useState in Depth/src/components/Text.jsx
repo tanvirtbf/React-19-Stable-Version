@@ -1,8 +1,10 @@
 import React from 'react'
+import ChildText from './ChildText'
 
-const Text = ({num=0}={}) => {
+const Text = ({ handleOfClick}={}) => {
+  console.log('Text.jsx Running!')
   return (
-    <span style={{fontSize: '24px', paddingRight: '20px'}}>{num===null ? 0 : num}</span>
+     <ChildText handleOfClick={handleOfClick} />
   )
 }
 
