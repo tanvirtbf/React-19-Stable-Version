@@ -25,8 +25,11 @@ const Calculator = () => {
   function handleClick() {
     console.log("HandleClick!");
   }
-  function handleOperationSelect(operation) {
-    setOperation(operation);
+  function handleOperationSelect(e) {
+    const oneWay = e.target.dataset.operation;
+    const secondWay = e.target.getAttribute('data-operation')
+    console.log(oneWay, secondWay) 
+    setOperation(oneWay)
   }
 
   return (
@@ -46,7 +49,7 @@ const Calculator = () => {
         {Operations.map((o) => {
           return (
             <Button
-              onClick={() => handleOperationSelect(o)}
+              onClick={handleOperationSelect}
               key={o}
               label={o}
               dataOperation={o}
