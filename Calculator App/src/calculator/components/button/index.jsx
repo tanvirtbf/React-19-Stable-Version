@@ -1,9 +1,9 @@
 import React from 'react'
 import './style.css'
 
-const Button = ({label='', onClick=()=>{}}={}) => {
+const Button = ({label='', onClick=()=>{}, dataOperation=''}={}) => {
   return (
-    <button onClick={onClick}>{label}</button>
+    <button data-operation={dataOperation} onClick={onClick}>{label}</button>
   )
 }
 
