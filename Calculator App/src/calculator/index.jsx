@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import './style.css'
 import Input from './components/input'
 import Button from './components/button'
@@ -13,7 +13,11 @@ const Operations = [Add, Subtract, Divide, Multiply, Equal]
 const Nums = [...new Array(10)]
 
 const Calculator = () => {
-  
+
+  const [operandA, setOperandA] = useState('')
+  const [operandB, setOperandB] = useState('')
+  const [result, setResult] = useState('')
+  const [operation, setOperation] = useState('')
 
     function onInput(value){
         console.log(value)
