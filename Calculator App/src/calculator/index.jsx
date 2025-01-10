@@ -26,10 +26,12 @@ const Calculator = () => {
     console.log("HandleClick!");
   }
   function handleOperationSelect(e) {
-    const oneWay = e.target.dataset.operation;
-    const secondWay = e.target.getAttribute('data-operation')
-    console.log(oneWay, secondWay) 
-    setOperation(oneWay)
+    // const oneWay = e.target.dataset.operation;
+    // const secondWay = e.target.getAttribute('data-operation')
+    console.log('Outer')
+    return ()=>{
+      setOperation(e)
+    }
   }
 
   return (
@@ -49,7 +51,7 @@ const Calculator = () => {
         {Operations.map((o) => {
           return (
             <Button
-              onClick={handleOperationSelect}
+              onClick={handleOperationSelect(o)}
               key={o}
               label={o}
               dataOperation={o}
