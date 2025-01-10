@@ -14,29 +14,34 @@ const Nums = [...new Array(10)]
 
 const Calculator = () => {
 
-  const [operandA, setOperandA] = useState('')
+  const [operandA, setOperandA] = useState('A')
   const [operandB, setOperandB] = useState('')
   const [result, setResult] = useState('')
   const [operation, setOperation] = useState('')
+  const [currentNumber, setCurrentNumber] = useState('')
 
     function onInput(value){
-        console.log(value)
+        setCurrentNumber(value)
     }
     function handleClick(){
       console.log('HandleClick!')
     }
+    function handleOperationSelect(operation){
+      setOperation(operation)
+    }
 
   return (
     <div>
-        <Input placeholder='Enter Number' onInput={onInput} />
+        <Input value={currentNumber} placeholder='Enter Number' onInput={onInput} />
         <div>
           {Nums.map((_, index)=> {
             return <Button key={index} label={index} onClick={handleClick} />
           })}
         </div>
+        Selected Operation {operation}
         <div>
           {Operations.map(o => {
-            return <Button key={o} label={o} />
+            return <Button onClick={()=>handleOperationSelect(o)} key={o} label={o} />
           })}
         </div>
         
