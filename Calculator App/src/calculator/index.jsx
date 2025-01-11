@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./style.css";
 import Input from "./components/input";
 import Button from "./components/button";
@@ -13,7 +13,7 @@ const Operations = [Add, Subtract, Divide, Multiply, Equal];
 const Nums = [...new Array(10)];
 
 const Calculator = () => {
-  const [operandA, setOperandA] = useState("A");
+  const [operandA, setOperandA] = useState("");
   const [operandB, setOperandB] = useState("");
   const [result, setResult] = useState("");
   const [operation, setOperation] = useState("");
@@ -22,15 +22,21 @@ const Calculator = () => {
   function onInput(value) {
     setCurrentNumber(value);
   }
-  function handleClick() {
-    console.log("HandleClick!");
+  function handleClick(i) {
+    if(!operation){
+      setCurrentNumber(currentNumber*10+i)
+      setOperandA(currentNumber)
+    }
   }
-  function handleOperationSelect(e) {
+  function handleOperationSelect(o) {
     // const oneWay = e.target.dataset.operation;
     // const secondWay = e.target.getAttribute('data-operation')
     console.log('Outer')
     return ()=>{
-      setOperation(e)
+      if(operandA) {
+        setOperation(o)
+        setCurrentNumber('')
+      }
     }
   }
 
@@ -43,7 +49,7 @@ const Calculator = () => {
       />
       <div>
         {Nums.map((_, index) => {
-          return <Button key={index} label={index} onClick={handleClick} />;
+          return <Button key={index} label={index} onClick={()=>handleClick(index)} />;
         })}
       </div>
       Selected Operation {operation}
