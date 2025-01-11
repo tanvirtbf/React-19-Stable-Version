@@ -1,13 +1,16 @@
-import React from 'react'
-import './style.css'
 
-const Input = ({placeholder='', onInput=()=>{}}={}) => {
-    function handleInput(e){
+import './style.css';
+
+function Input({placeholder='', onInput=()=> {}, value=''} ={}) {
+
+    function handleInput(e) {
+
+      
         onInput(e.target.value)
     }
-  return (
-    <input type="text" placeholder={placeholder} onInput={handleInput} />
-  )
+
+
+    return <input value={value} onInput={handleInput} placeholder={placeholder} type="text" />
 }
 
-export default Input
+export default Input;
