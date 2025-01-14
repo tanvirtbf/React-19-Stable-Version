@@ -1,20 +1,14 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import "./App.css";
-import Parent from "./components/Parent";
+import TestUseEffect from "./components/TestUseEffect";
 
 function App() {
-  const [select, setSelect] = useState(true)
+  const [count, setCount] = useState(0)
 
-  useEffect(() => {
-    console.log("App Mount!");
-    return () => {
-      console.log("App Unmount!");
-    };
-  }, []);
   return (
     <div>
-      <button onClick={()=> setSelect(!select)}>Unmount Parent</button>
-      {select && <Parent />}
+      <button onClick={()=> setCount(count+1)}>Unmount {count}</button>
+      {count%2===0 ? '' : <TestUseEffect />}
     </div>
   );
 }
