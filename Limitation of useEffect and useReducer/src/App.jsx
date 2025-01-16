@@ -4,11 +4,11 @@ import "./App.css";
 function App() {
   const [count, setCount] = useState(0)
 
-  const [obj, setObj] = useState({name : 'Tanvir'})
+  const arr = []
 
   useEffect(()=>{
     console.log('hello')
-  }, [obj])
+  }, [arr.length])
 
   return (
     <div>
