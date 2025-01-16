@@ -1,17 +1,10 @@
 import { useEffect, useState } from "react";
 import "./App.css";
-import TestUseEffect from "./components/TestUseEffect";
 
 function App() {
   const [count, setCount] = useState(0)
 
-  const [obj, setObj] = useState({
-    name : 'Tanvir',
-    age : 25, 
-    roll : 1,
-  })
-
-  if(count % 3 === 0) obj.roll = count
+  const [obj, setObj] = useState({name : 'Tanvir'})
 
   useEffect(()=>{
     console.log('hello')
@@ -19,7 +12,7 @@ function App() {
 
   return (
     <div>
-      <button onClick={()=> setCount(count+1)}>Click Me</button>
+      <button onClick={()=> setCount(count+1)}>Click Me {count}</button>
     </div>
   );
 }
