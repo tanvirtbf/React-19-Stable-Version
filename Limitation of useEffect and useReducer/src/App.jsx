@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import "./App.css";
 
 function App() {
@@ -6,15 +6,17 @@ function App() {
   const [count, setCount] = useState(0)
   const [msg, setMessage] = useState('No Message!')
 
-  useEffect(()=>{
-    if(count === 2) {
-      setMessage("Hello World!")
+  function handleClick(){
+    const newCount = count + 1
+    setCount(count+1)
+    if(newCount===3){
+      setMessage('Hello World!')
     }
-  }, [count])
+  }
 
   return (
     <div>
-      <button onClick={()=> setCount(count+1)}>Click Me {count}</button>
+      <button onClick={handleClick}>Click Me {count}</button>
       <div>{msg}</div>
     </div>
   );
