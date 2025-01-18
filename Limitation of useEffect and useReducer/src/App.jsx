@@ -1,24 +1,26 @@
 import { useEffect, useState } from "react";
 import "./App.css";
+// Reseting States when Props change example :
 
-function getVisibleTodos(todos){
-  return todos
+function Child({id}){
+  console.log('Child Render!')
+  const [childCount, setChildCount] = useState(0)
+
+  return <button onClick={()=> setChildCount(childCount+1)}>{childCount}</button>
 }
 
 function App() {
   console.log('App Render!')
-  const [newTodo, setNewTodo] = useState('cricket')
-
-  const visibleTodos = getVisibleTodos(newTodo)
+  const [count, setCount] = useState(0)
 
   function handleClick(){
-    setNewTodo('Football')
+    setCount(count + 1)
   }
 
   return (
     <div>
-      <button onClick={handleClick}>Click Me {newTodo}</button>
-      <div>{visibleTodos}</div>
+      <button onClick={handleClick}>Click Me {count}</button>
+      <Child key={count} id={count} />
     </div>
   );
 }
