@@ -1,31 +1,50 @@
-import { useEffect, useState } from "react";
+import { useEffect, useReducer, useState } from "react";
 import "./App.css";
+
+const initialValue ={
+  firstName : '',
+  lastName : '',
+  email : '',
+  password : '',
+}
+
+function reducerFun(initState, action){
+
+  if(action.type==='firstName'){
+    return {...initState, firstName: action.payload}
+  }else if(action.type==='lastName'){
+    return {...initState, lastName: action.payload}
+  }else if(action.type==='email'){
+    return {...initState, email: action.payload}
+  }else if(action.type==='password'){
+    return {...initState, password: action.payload}
+  }else if(action.type==='allReset'){
+    return {...initState, firstName:'',lastName:'',email:'',password:''}
+  }
+
+  return initState
+}
 
 function App(){
 
-  const [formData, setFormData] = useState({
-    firstName : '',
-    lastName : '',
-    email : '',
-    password : '',
-  })
+  const [formData, dispatch] = useReducer(reducerFun, initialValue)
 
   function handleFname(e){
-    setFormData({...formData, firstName: e.target.value})
+    dispatch({type:'firstName', payload: e.target.value})
   }
   function handleLname(e){
-    setFormData({...formData, lastName: e.target.value})
+    dispatch({type:'lastName', payload: e.target.value})
   }
   function handleEmail(e){
-    setFormData({...formData, email: e.target.value})
+    dispatch({type:'email', payload: e.target.value})
   }
   function handlePassword(e){
-    setFormData({...formData, password: e.target.value})
+    dispatch({type:'password', payload: e.target.value})
   }
 
   function handleSubmit(e){
     e.preventDefault()
-    setFormData({firstName:'',lastName:'',email:'',password:''})
+    dispatch({type:'allReset'})
   }
 
   return (
