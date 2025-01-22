@@ -1,20 +1,32 @@
-import React, { useEffect } from "react";
-import GrandChild from "./GrandChild";
+import React from 'react'
+import { useEffect } from 'react'
 
 const Child = () => {
-  useEffect(() => {
-    console.log("Child Mount!");
+
+  useEffect(()=>{
+    const id = setInterval(()=>{
+      console.log('Component Mount!')
+    }, 1000)
+
+    function handleClick(){
+      console.log('Clicked!')
+    }
+
+    document.addEventListener('click', handleClick)
+
     return () => {
-      console.log("Child Unmount!");
-    };
-  }, []);
+      console.log('Child Component Unmount!')
+      clearInterval(id)
+      document.removeEventListener('click', handleClick)
+    }
+
+  }, [])
 
   return (
     <div>
-      Child 
-      <GrandChild />
+      Child
     </div>
-  );
-};
+  )
+}
 
-export default Child;
+export default Child
