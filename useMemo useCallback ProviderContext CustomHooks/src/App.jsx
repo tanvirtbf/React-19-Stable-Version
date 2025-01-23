@@ -1,6 +1,6 @@
-import { useReducer, useState } from "react";
+import { useState } from "react";
 import "./App.css";
-import Child from "./components/Child";
+import TestMemo from "./components/TestMemo";
 
 function App(){
   const [count, setCount] = useState(0)
@@ -12,25 +12,10 @@ function App(){
   return (
     <div>
       <button onClick={handleClick}>Count {count}</button>
-      {count>4 && count<10 && <Child />}
+      <TestMemo />
     </div>
   );
 }
 
 export default App;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
