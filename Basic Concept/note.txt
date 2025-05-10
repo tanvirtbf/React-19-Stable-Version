@@ -1,0 +1,17 @@
+1--> React kon problem solve kore ? react just 1 taii problem solve kore . seta holo reduce numer of DOM operations(Dom Updates). View, Angular , React sobar main purpose hocche reduce number of DOM Operations. 
+pura web development e sobcheye beshi costly jei jinish ta seta hocche dom operations. ami hajar loop chalai tao seta eto ta costly na jotota samanno ekta dom operations e hoye thake. 
+kintu browser e to DOM operations hobeii?? tahole eto costly kno? karon browser dom operations er jonno bananoii hoy nai . Browser only toiri hoisilo text document ke dekhanor jonno . 90 shaler dike browser er main kaj chilo document dekhano . keu vabeii nai je future e browser ke eto dom operations korte hobe. 
+DOM costly kno? 
+browser C++ e lekha hoise . amra jokhon js diye dom operations er code likhi tokhon browser sei code gula c++ er dara read kore ui te change kore  . karon js kokhonoii directly machine er sathe interect korte pare na . c++ pare . tai c++ e convert hoy js er dom operations code . ekhane js engine er sathe browser communication koraiya dey c++ er sathe . ei communication taii onk costly . mane js er code c++ e convert houya ta onk costly . 
+
+
+2--> Virtual DOM ki ? 
+virtual dom holo ekta plain object jeta dom ke represent kore thake . jokhon amra javascript diye dom update kori tokhon directly dom update hoye jay but react e virtual dom concept er jonno react e dom update hoile sathe sathe dom update hoy na . seta jay virtual dom er kase . jigasha kore update korar ki dorkar ase ? jodi na hoy tahole update kore na . 
+
+3--> tahole react kivabe amader help kore ? react amader jonno dom operations minimize kore dey . dorkar hoileii kebol dorkarii jayga tay dom updates hoy . nahole hoy na 
+
+4--> amon na je amra single page application(spa) er jonno react ee use kora lagbe . amra chaile ajax use kore spa achieve korte pari 
+
+
+
+
