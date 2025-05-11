@@ -12,6 +12,6 @@ virtual dom holo ekta plain object jeta dom ke represent kore thake . jokhon amr
 
 4--> amon na je amra single page application(spa) er jonno react ee use kora lagbe . amra chaile ajax use kore spa achieve korte pari 
 
-
+5--> Babel ki ?  bable holo ekta transpiler . orthat translate kore . notun notun technology ashtese . coding pattern change hocche . ES6, ES7 etc ashtese . but browser to onk ageii kora hoise . browser kivabe ai notun notun update er sathe nijeke update korte thakbe ? jodi browser javascript or other more language, technology sathe nijeke update korte thake tahole browser er ekhane huge time, money invest korte hobe . tai ekhane ashe third party organization jar nam Babel . babel bole je notun update hoite dau, ami notun updated code browser acceptable code e convert kore dibo . 
 
 
