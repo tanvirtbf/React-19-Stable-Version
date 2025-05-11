@@ -58,3 +58,27 @@ amra jodi eksathe 2 ta element parent e rakhte chai tokhon jsx setake error dey 
 jei attacker er main purpose hocche jekono way te tar nijer javascript code sei project e execute kora . etakeii XSS attack bole . jsx ai attack khub valo vabe handle kore jate ai attack na ashe. 
 
 
+
+
+8--> onInput and onChange er moddhe parthokko ki ? 
+dhoren ekta input box e likha ase 'Tanvir' sekhane jodi ami T select kore abar T likhi tokhon onInput call hobe but onChange call hobe na . onChange only tokhon call hoy jokhon amar text field er value change hobe. 
+
+
+
+
+9--> amra chaile props er bodome arguments array use korte pari . console.log(arguments) korle arguments er ekta array return hoy jekhane oi component e jei data pathano hoise segula thake
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
