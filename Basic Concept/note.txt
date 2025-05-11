@@ -54,4 +54,7 @@ amra jodi eksathe 2 ta element parent e rakhte chai tokhon jsx setake error dey 
 
 
 
+7--> XSS(Cross Site Scripting Attack) eta ki ? 
+jei attacker er main purpose hocche jekono way te tar nijer javascript code sei project e execute kora . etakeii XSS attack bole . jsx ai attack khub valo vabe handle kore jate ai attack na ashe. 
+
 
