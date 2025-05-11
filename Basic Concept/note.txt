@@ -51,3 +51,7 @@ Babel-এর সবচেয়ে বড় সুবিধা হলো—এটি 
 6--> fragment kno dorkar hoilo? 
 amra jodi eksathe 2 ta element parent e rakhte chai tokhon jsx setake error dey . tokhon amra fragment use kori . kintu multiple element er belay error dey kno? karon jsx e parent element likhle seta internally amader oi element create kore return kore . kokhono ki 2 ta jinish return kora somvob? function(){... return 2,4} --- is it possible ? answer is no . return just 1 ta jinish kora jay . similarly amra jodi fragment use kori tokhon kivabe 2 ta jinish return hoy ? tokhon actually object akare value pass hoy . mane multiple element ekta object er alada alada property hishebe thake and oi object return hoy . tai fragment kom use kora valo . karon tate extra task kora lage jsx ke . 
 
+
+
+
+
