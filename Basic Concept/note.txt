@@ -70,6 +70,8 @@ dhoren ekta input box e likha ase 'Tanvir' sekhane jodi ami T select kore abar T
 
 
 
+10--> Atomic vs Non-Atomic design pattern ki ? 
+atomic holo choto theke choto component e sobkichu vag kore rakha and sobgula jora diye final ui implement kora . eta te code clean thake . non-atomic tar ulta ta . eto beshi component e vag kora hoy na . dhoren footer ekta component . ektaii component e sob code likha . dhoren navbar ekta component . ei navbar component eii sob code lekha . eta non-atomic design pattern . kintu best holo atomic design 
 
 
 
