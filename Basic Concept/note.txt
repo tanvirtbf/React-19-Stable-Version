@@ -5,12 +5,24 @@ DOM costly kno?
 browser C++ e lekha hoise . amra jokhon js diye dom operations er code likhi tokhon browser sei code gula c++ er dara read kore ui te change kore  . karon js kokhonoii directly machine er sathe interect korte pare na . c++ pare . tai c++ e convert hoy js er dom operations code . ekhane js engine er sathe browser communication koraiya dey c++ er sathe . ei communication taii onk costly . mane js er code c++ e convert houya ta onk costly . 
 
 
+
+
+
 2--> Virtual DOM ki ? 
 virtual dom holo ekta plain object jeta dom ke represent kore thake . jokhon amra javascript diye dom update kori tokhon directly dom update hoye jay but react e virtual dom concept er jonno react e dom update hoile sathe sathe dom update hoy na . seta jay virtual dom er kase . jigasha kore update korar ki dorkar ase ? jodi na hoy tahole update kore na . 
 
+
+
+
 3--> tahole react kivabe amader help kore ? react amader jonno dom operations minimize kore dey . dorkar hoileii kebol dorkarii jayga tay dom updates hoy . nahole hoy na 
 
+
+
+
 4--> amon na je amra single page application(spa) er jonno react ee use kora lagbe . amra chaile ajax use kore spa achieve korte pari 
+
+
+
 
 5--> Babel ki ? 
 bable holo ekta transpiler . orthat translate kore . notun notun technology ashtese . coding pattern change hocche . ES6, ES7 etc ashtese . but browser to onk ageii kora hoise . browser kivabe ai notun notun update er sathe nijeke update korte thakbe ? jodi browser javascript or other more language, technology sathe nijeke update korte thake tahole browser er ekhane huge time, money invest korte hobe . tai ekhane ashe third party organization jar nam Babel . babel bole je notun update hoite dau, ami notun updated code browser acceptable code e convert kore dibo . 
@@ -34,4 +46,8 @@ Babel-এর সবচেয়ে বড় সুবিধা হলো—এটি 
 
 🔖 #JavaScript #Babel #ModernJS #Transpiler #ES6 #JSX #React #FrontendDevelopment #WebDevelopment #CodeCompatibility #LinkedInLearning
 
+
+
+6--> fragment kno dorkar hoilo? 
+amra jodi eksathe 2 ta element parent e rakhte chai tokhon jsx setake error dey . tokhon amra fragment use kori . kintu multiple element er belay error dey kno? karon jsx e parent element likhle seta internally amader oi element create kore return kore . kokhono ki 2 ta jinish return kora somvob? function(){... return 2,4} --- is it possible ? answer is no . return just 1 ta jinish kora jay . similarly amra jodi fragment use kori tokhon kivabe 2 ta jinish return hoy ? tokhon actually object akare value pass hoy . mane multiple element ekta object er alada alada property hishebe thake and oi object return hoy . tai fragment kom use kora valo . karon tate extra task kora lage jsx ke . 
 
