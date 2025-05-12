@@ -141,6 +141,8 @@ jokhon component er vitor kono heavy calculation hoy tokhon re-render problem cr
 
 
 
+
+
 15--> mainly 3 ta karone component re-render hoy . 
 1> jokhon useState variable change hoy
 2> jokhon useReducer variable change hoy
@@ -175,6 +177,19 @@ function handleChange(){
 	setState3(1)
 } 
 ekhane handleChange function trigger hoile 3 bar state change hobe . tahole ki 3 bar component re-render hobe ? answer is NO. kno ? karon react ektu vinno way te setter function call kore . handleChange er vitor joto gula setter function ase react prothome segula ke batch kore fele . batch means dhoren react ekta note kore rakhe ki ki setter function ase . then setter function chara baki code gula execute kore fele . jokhon baki sob code execute hoye jay handleChange er vitor tokhon react batch or note e thaka sob setter function at a time run koray and just 1 bar aikarone re-render hoy and updated value re-render er por show hoy . 
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
