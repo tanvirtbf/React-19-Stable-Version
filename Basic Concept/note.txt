@@ -122,7 +122,8 @@ Reflow আর Repaint ছোট শব্দ হলেও, পারফরম্
 
 
 
-13--> 
+13--> useState niye ekta important note : 
+amr useState use na kore jodi normal variable update kore ui te show koraite chai tokhon kno show hoy na ? karon normal variable er update react track kore na . useState er variable ekta special variable jeta update hole react seta track kore and value update hoileo se re-render hoye updated value ui te show koray . 
 
 
 
