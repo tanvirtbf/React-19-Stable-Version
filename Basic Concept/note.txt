@@ -116,14 +116,38 @@ Chrome DevTools এ Performance Tab use করে Reflow/Repaint trace করু
 Reflow আর Repaint ছোট শব্দ হলেও, পারফরম্যান্স অপটিমাইজেশনের দুনিয়ায় তারা বড় খেলোয়াড়।
 👉 যারা এগুলোর কার্যকারিতা বুঝে কোড করে, তারাই হয় সত্যিকারের পারফরম্যান্স-বান্ধব ডেভেলপার।
 
-#WebPerformance #JavaScript #FrontendTips #Reflow #Repaint #Optimization #PerformanceMatters #BanglaPost
-
 
 
 
 
 13--> useState niye ekta important note : 
 amr useState use na kore jodi normal variable update kore ui te show koraite chai tokhon kno show hoy na ? karon normal variable er update react track kore na . useState er variable ekta special variable jeta update hole react seta track kore and value update hoileo se re-render hoye updated value ui te show koray . 
+
+
+
+
+
+15--> re-render maneii ki ui update? 
+answer is NO. karon ui tokhonii update hobe jokhon ui te kono value change hobe or ui color, background etc change hobe . jodi useState er moddhe thaka variable change hoy but ui te kono change na hoy tokhon component re-render hobe ta thik but ui re-render or ui update hobe na  
+tahole kivabe ai flow ta kaj kore ? details bolchi :- 
+jokhon state update hoy tokhon component abar call hoy . karon component re-render maneii function call . sei function abaro first line theke run houya start korbe . jaite jaite jsx e ashle setao notun kore VDOM akare create korbe . tokhon virtual dom setake check kore je ai specific component jetay VDOM create hoise etar moddhe ki kono changes hoise ? jodi hoy tahole ui update koro , nahole koiro na . tar mane holo component re-render hoile notun kore jsx er VDOM create hoy thikii but update hobe ki hobe na seta react er final virtual dom thik kore . tai amra bolte pari je component re-render maneii kintu ui update na . jsx er moddhe kono change hoileii kebol component update hoy . 
+
+
+
+
+
+14--> re-render kokhon problem create kore ? 
+jokhon component er vitor kono heavy calculation hoy tokhon re-render problem create kore . by default react e re-render khubii optimized .
+
+
+
+15--> mainly 3 ta karone component re-render hoy . 
+1> jokhon useState variable change hoy
+2> jokhon useReducer variable change hoy
+3> jokhon props er value change hoy
+
+
+
 
 
 
