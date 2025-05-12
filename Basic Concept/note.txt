@@ -81,6 +81,9 @@ eta react 16+ version er por ashce .
 
 
 12--> reflow and repaint ki ? 
+jokhon kono change er por project er layout change hoye jay, jokhon kono element er size, position or structure change hoye jay tokhon browser ke abar layout hishab korte hoy . etate onk cpu khoroch hoy . performance slow hoye jay . kintu repaint hocche just pixel level e kono change jemon text color change, background color etc change hoile hoy . eta te browser er temon cpu khoroch hoy na  
+
+
 🚀 ওয়েব অ্যাপের পারফরম্যান্স ঠিক রাখতে চাইলে Reflow আর Repaint বুঝতেই হবে!
 আমরা অনেকেই frontend ডেভেলপার হিসেবে শুধু "কাজ করে এমন" কোড লিখি — কিন্তু প্রশ্ন হলো, সেটা কি পারফর্মেন্স অপটিমাইজড?
 
