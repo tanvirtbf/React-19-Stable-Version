@@ -149,6 +149,15 @@ jokhon component er vitor kono heavy calculation hoy tokhon re-render problem cr
 
 
 
+16---> amra ki onChange={fn()} evabe likhte pari na ? or onInput={fn()}, onSubmit={fn()} erokom kore likhte pari na ? obosshoi pari . jokhon curring or higher order function er kaj thake tokhon evabeo call kora jay . 
+Example: 
+const handleChange = (fieldName) => (e) => {
+  console.log(fieldName, e.target.value);
+};
+
+<input onChange={handleChange("email")} />
+<input onChange={handleChange("password")} />
+
 
 
 
