@@ -1,19 +1,12 @@
-import WordGuessingGame from './word-guessing-game'
-import './App.css'
+import "./App.css";
+import WordGuessingGame from "./practice-word-guessing-game";
 
 function App() {
-    
-
-
-  return <div>
-        <WordGuessingGame />
-  </div>
-
+  return (
+    <div>
+      <WordGuessingGame />
+    </div>
+  );
 }
 
-
-
- 
-
-
-export default App
+export default App;
