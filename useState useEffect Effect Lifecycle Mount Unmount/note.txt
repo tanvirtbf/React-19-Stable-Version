@@ -8,3 +8,8 @@ dhoren ekta popup kono click er por jokhon ui te show hoy tokhon bolte pari je p
 2. child component age mount hoy naki parent component age mount hobe ? 
 age child component mount hobe then parent component mount hobe . 
 amra jokhon nested theke nested way te component jora lagai tokhon sobcheye nicher component age mount hobe then evabe mount hoite hoite sobar last e top component mount hobe . 
+
+
+
+3. child and parent er moddhe konta age unmount hoy ? 
+unmount er khetre sobar top componenet theke unmount start hoy then sobar last e sobcheye nicher child component unmount hoy . 

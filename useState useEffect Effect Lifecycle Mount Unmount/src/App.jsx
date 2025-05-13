@@ -16,11 +16,17 @@ function App() {
 
   useEffect(() => {
     console.log('App Component Mount!');
+
+    return () => {
+      console.log('App Component Unmount');
+    }
   }, [])
+
+  const mod2 = count%2 === 0
 
   return (
     <div>
-      <Child />
+      {mod2 && <Child />}
       <button onClick={handleIncrease}>Increase {count}</button>
     </div>
   );
@@ -43,7 +49,7 @@ function GrandChild(){
   }, [])
 
   return (
-    <h1>Grand Child</h1>
+    <h4>Grand Child</h4>
   )
 }
 
