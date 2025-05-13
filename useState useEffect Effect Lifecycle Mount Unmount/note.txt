@@ -1,4 +1,10 @@
 1. What is Mount and unmount? 
 mount holo kono component ui te show houyar porer obostha and unmount holo oi component jokhon ui te hide hoye jabe . 
 dhoren ekta popup kono click er por jokhon ui te show hoy tokhon bolte pari je popup component mount hoise and jokhon popup ta close kore dei tokhon boli je popup component unmount hoise 
- 
+
+
+
+
+2. child component age mount hoy naki parent component age mount hobe ? 
+age child component mount hobe then parent component mount hobe . 
+amra jokhon nested theke nested way te component jora lagai tokhon sobcheye nicher component age mount hobe then evabe mount hoite hoite sobar last e top component mount hobe . 
