@@ -1,0 +1,4 @@
+1. What is Mount and unmount? 
+mount holo kono component ui te show houyar porer obostha and unmount holo oi component jokhon ui te hide hoye jabe . 
+dhoren ekta popup kono click er por jokhon ui te show hoy tokhon bolte pari je popup component mount hoise and jokhon popup ta close kore dei tokhon boli je popup component unmount hoise 
+ 
