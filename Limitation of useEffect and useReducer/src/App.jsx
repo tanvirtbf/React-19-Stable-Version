@@ -1,4 +1,4 @@
-import { useReducer, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import "./App.css";
 
 function App(){
@@ -7,6 +7,14 @@ function App(){
   function handleClick(e){
     setCount(count+1)
   }
+
+  const getData = useCallback(() => {
+    console.log('Get Data Called!');
+  }, [])
+
+  useEffect(() => {
+    getData();
+  }, [getData])
 
   return (
     <div>
