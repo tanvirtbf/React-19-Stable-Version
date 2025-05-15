@@ -1,32 +1,15 @@
-import React from 'react'
-import { useEffect } from 'react'
+import { memo, useMemo } from "react";
 
-const Child = () => {
+const Child = memo(({ handleClick }) => {
+  console.log("Child Component Re-render!");
 
-  useEffect(()=>{
-    const id = setInterval(()=>{
-      console.log('Component Mount!')
-    }, 1000)
-
-    function handleClick(){
-      console.log('Clicked!')
+  useMemo(() => {
+    for (let i = 0; i < 10; i++) {
+      console.log(`Render ${i + 1}`);
     }
+  }, [handleClick]);
 
-    document.addEventListener('click', handleClick)
-
-    return () => {
-      console.log('Child Component Unmount!')
-      clearInterval(id)
-      document.removeEventListener('click', handleClick)
-    }
-
-  }, [])
-
-  return (
-    <div>
-      Child
-    </div>
-  )
-}
+  return <h1>Child Component!</h1>;
+});
 
 export default Child

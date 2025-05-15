@@ -8,30 +8,46 @@ import React, {
   useSyncExternalStore,
 } from "react";
 import "./App.css";
-import { useLogic } from "./hooks/useLogic";
 
-
+const API_URL = "https://dummyjson.com/products";
 
 function App() {
-  const {count, handleClick} = useLogic()
-  return (
-    <div>
-      <Child handleClick={handleClick} />
-      <button onClick={handleClick}>Count {count}</button>
-    </div>
-  );
+  const [data, setData] = useState([]);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
+
+  useEffect(() => {
+    setLoading(true);
+    setError("");
+
+    setTimeout(() => {
+      fetch(API_URL)
+        .then((res) => res.json())
+        .then((d) => {
+          setData(d.products);
+        })
+        .catch((err) => {
+          setError("Some Error Found!");
+        })
+        .finally(() => {
+          setLoading(false);
+        });
+    }, 5000);
+  }, []);
+
+  if(loading){
+    return <h1>Loading...</h1>
+  }
+
+  if(error){
+    return <h1>{error}</h1>
+  }
+
+  if(data.length===0){
+    return <h1>Data Not Found!</h1>
+  }
+
+  return <div>{data.map((item) => <p>{item.title}</p>)}</div>;
 }
-
-const Child = memo(({ handleClick }) => {
-  console.log("Child Component Re-render!");
-
-  useMemo(() => {
-    for (let i = 0; i < 10; i++) {
-      console.log(`Render ${i + 1}`);
-    }
-  }, [handleClick]);
-
-  return <h1>Child Component!</h1>;
-});
 
 export default App;
