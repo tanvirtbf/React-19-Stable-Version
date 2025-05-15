@@ -8,16 +8,22 @@ function App(){
     setCount(count+1)
   }
 
+  function getData(){
+    console.log('Get Data Called!');
+  }
+
   return (
     <div>
-      <Child key={count} id={count} />
+      <Child getData={getData} key={count} id={count} />
       <button onClick={handleClick}>{count}</button>
     </div>
   );
 }
 
-function Child({ id }){
+function Child({ id, getData }){
   const [childCount, setChildCount] = useState(id)
+
+  getData()
 
   return (
     <div>Child Component! {childCount}</div>

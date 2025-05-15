@@ -15,7 +15,7 @@ dependency array te amake sob somoy premitive value dite hobe . non-premitive so
 
 
 
-
+Avoid useEffect part 1-----------> 
 
 akhn ami ekta way dekhabo jetar dara amra useEffect ke avoid korte pari . niche sample code deya holo : 
 function App(){
@@ -72,3 +72,67 @@ function Child({ id }){
 }
 ------ amra jani je kono component er key props change hoile sei component notun kore re-create hoy . tar mane oi component er state variable gula abar reset hoye default value set hoy . ami Child component er childCount e default value disi id . and Child Component call korar somoy key props er moddhe count pass kore disi . tai count change hoileii key props change hobe and Child component new create hobe and tar vitor sob state reset hobe . and protibar childCount id er update value niye reset hobe . etar maddhome ami useEffect ke certain time e avoid korte pari 
 
+
+
+
+
+Avoid useEffect part 2-----------> 
+
+sample code : 
+function App(){
+  const [count, setCount] = useState(0)
+
+  function handleClick(e){
+    setCount(count+1)
+  }
+
+  function getData(){
+    console.log('Get Data Called!');
+  }
+
+  return (
+    <div>
+      <Child getData={getData} key={count} id={count} />
+      <button onClick={handleClick}>{count}</button>
+    </div>
+  );
+}
+
+function Child({ id, getData }){
+  const [childCount, setChildCount] = useState(id)
+
+  useEffect(() => {
+    getData()
+  }, [childCount])
+
+  return (
+    <div>Child Component! {childCount}</div>
+  )
+}
+
+ekhane Child component e parent er getData function pass korechi and child component e childCount change hoile getData call kora hocche useEffect use kore . so aikhane amra chaile useEffect ke avoid korte pari . kintu kivabe ? 
+
+sample code: 
+function Child({ id, getData }){
+  const [childCount, setChildCount] = useState(id)
+
+  getData()
+
+  return (
+    <div>Child Component! {childCount}</div>
+  )
+}-- ekhane automatic jehetu protibar child component reset hocche tai automatic protibar childCount notun kore reset hoye default value set hocche . 
+
+evabe nahole arekta way ase :
+function Child({ id, getData }){
+  const [childCount, setChildCount] = useState(id)
+
+  function click(){
+    setChildCount(...)
+    getData()
+  }
+
+  return (
+    <div>Child Component! {childCount}</div>
+  )
+} ------- jodi erokom hoy je kono function call hobe childCount change korar jonno sekhaneo ami getData call korte pari 
