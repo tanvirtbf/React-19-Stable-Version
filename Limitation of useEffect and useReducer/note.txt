@@ -167,4 +167,33 @@ function App(){
       <button onClick={handleClick}>{count}</button>
     </div>
   );
-}
+}-- ai code tar bikolpo code ami dicchi 
+
+function App(){
+  const [count, setCount] = useState(0)
+
+  function subscribe(){
+    document.addEventListener("click", handleOutsideClick)
+
+    return () => {
+      document.removeEventListener("click", handleOutsideClick)
+    }
+  }
+
+  useSyncExternalStore(subscribe, ()=>{})
+
+
+  function handleOutsideClick(){
+    console.log('Click on Document!');
+  }
+
+  function handleClick(e){
+    setCount(count+1)
+  }
+
+  return (
+    <div>
+      <button onClick={handleClick}>{count}</button>
+    </div>
+  );
+}------- eta niye deeply pore bolbo . just etuku jene rakha valo useEffect er bodole useSyncExternalStore ai hooks use kora jabe . eta valo

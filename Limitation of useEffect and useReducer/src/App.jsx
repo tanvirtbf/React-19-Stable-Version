@@ -1,15 +1,19 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useSyncExternalStore } from "react";
 import "./App.css";
 
 function App(){
   const [count, setCount] = useState(0)
 
-  useEffect(() => {
+  function subscribe(){
     document.addEventListener("click", handleOutsideClick)
-    return (() => {
+
+    return () => {
       document.removeEventListener("click", handleOutsideClick)
-    })
-  }, [])
+    }
+  }
+
+  useSyncExternalStore(subscribe, ()=>{})
+
 
   function handleOutsideClick(){
     console.log('Click on Document!');
