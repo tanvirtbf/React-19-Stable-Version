@@ -41,6 +41,7 @@ function App(){
         <div>{form.lName}</div>
         <div>{form.email}</div>
       </div>
+      {form.fName.length>3 && <Child />}
     </div>
   );
 }
@@ -49,13 +50,20 @@ function Child(){
 
   useEffect(() => {
 
-    setInterval(() => {
+    let id = setInterval(() => {
       console.log('Inside Child Component');
-    })
+    }, 1000)
 
-    document.addEventListener("click", () => {
+    function handleClick(){
       console.log("Clicked!");
-    })
+    }
+
+    document.addEventListener("click", handleClick)
+
+    return () => {
+      document.removeEventListener("click", handleClick)
+      clearInterval(id)
+    }
 
   }, [])
 
