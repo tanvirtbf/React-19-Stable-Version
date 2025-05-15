@@ -4,30 +4,27 @@ import "./App.css";
 function App(){
   const [count, setCount] = useState(0)
 
+  useEffect(() => {
+    document.addEventListener("click", handleOutsideClick)
+    return (() => {
+      document.removeEventListener("click", handleOutsideClick)
+    })
+  }, [])
+
+  function handleOutsideClick(){
+    console.log('Click on Document!');
+  }
+
   function handleClick(e){
     setCount(count+1)
   }
 
-  function getData(){
-    console.log('Get Data Called!');
-  }
-
   return (
     <div>
-      <Child getData={getData} key={count} id={count} />
       <button onClick={handleClick}>{count}</button>
     </div>
   );
 }
 
-function Child({ id, getData }){
-  const [childCount, setChildCount] = useState(id)
-
-  getData()
-
-  return (
-    <div>Child Component! {childCount}</div>
-  )
-}
 
 export default App;
