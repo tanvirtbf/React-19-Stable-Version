@@ -5,16 +5,15 @@ import React, {
   useMemo,
   useRef,
   useState,
+  useSyncExternalStore,
 } from "react";
 import "./App.css";
+import { useLogic } from "./hooks/useLogic";
+
+
 
 function App() {
-  const [count, setCount] = useState(0);
-
-  const handleClick = useCallback(()=> {
-    setCount((prev) => prev + 1);
-  }, [])
-
+  const {count, handleClick} = useLogic()
   return (
     <div>
       <Child handleClick={handleClick} />
