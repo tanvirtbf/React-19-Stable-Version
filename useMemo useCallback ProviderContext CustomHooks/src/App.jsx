@@ -1,44 +1,32 @@
 import React, { memo, useCallback, useEffect, useMemo, useRef, useState } from "react";
 import "./App.css";
 
-function App() {
-  const [count, setCount] = useState(0);
-  const countRef = useRef(null);
+function App(){
+  const [count, setCount] = useState(0)
 
-  const handleClick = useCallback(() =>  {
-    setCount((prev) => prev + 1);
-    countRef.current = count + 1;
-  }, [])
-
-  useEffect(() => {
-    let intervalId = setInterval(() => {
-      setCount(countRef.current + 3);
-    }, 5000);
-
-    return () => {
-      clearInterval(intervalId);
-    };
-  }, []);
+  function handleClick(){
+    setCount(count+1)
+  }
 
   return (
     <div>
-      <Child handleClick={handleClick} />
+      <Child count={count} />
       <button onClick={handleClick}>Count {count}</button>
     </div>
-  );
+  )
 }
 
-const Child = memo(({ handleClick }) => {
-  console.log("Child Component run!");
+const Child = memo(({ count }) => {
 
-  // Expensive Logic
-  useMemo(() => {
-    for (let i = 0; i < 10; i++) {
-      console.log(`Logic Running ${i + 1}`);
+  console.log('Child Component Re-render!');
+
+  return <h1>Child Component!</h1>
+}, (prevProps, nextProps) => {
+    if(nextProps.count > 10){
+      return false
+    } else {
+      return true
     }
-  }, []);
-
-  return <h1>Hello Child!</h1>;
-});
+})
 
 export default App;
