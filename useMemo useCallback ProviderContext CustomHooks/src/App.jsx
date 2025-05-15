@@ -1,8 +1,9 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { memo, useEffect, useRef, useState } from "react";
 import "./App.css";
 
 function App(){
   const [count, setCount] = useState(0)
+  const [msg, setMsg] = useState("")
   const countRef = useRef(null)
 
   function handleClick(){
@@ -22,10 +23,18 @@ function App(){
 
   return (
     <div>
+      <MemoizedChild msg={msg} />
       <button onClick={handleClick}>Count {count}</button>
     </div>
   );
 }
+
+function Child(){
+  console.log('Child Component run!');
+  return <h1>Hello Child!</h1>
+}
+
+const MemoizedChild = memo(Child)
 
 export default App;
 
