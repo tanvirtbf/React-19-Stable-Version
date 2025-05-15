@@ -1,3 +1,74 @@
 useState er khetre  jei function er vitor setter function call hoy just oi function er life cycle e setter function ta schedule hoy . mane setter function kothau schedule kora thake, then function er baki code gula execute houyar por then jokhon dekhe je r kono code execute baki nai tokhon setter function call hoy and state variable update hoy . then state variable update houyar sathe satheii component re-render hoy . jodi ekadhik setter function thake tahole sob gula eksathe run hobe and eksatheii state variable change hobe . tai amon na je 5 ta setter function thakle 5 bar re-render hobe . jotoii thakuk just 1 bar hobe re-render . jokhon sob setter function er execution complete hoy tokhon re-render hoy . then re-render e ui soho sob update hoy . 
 
+
+
+
 but useEffect er khetre bishoy ta alada . useEffect er vitor jodi kono setter function thake seta schedule sudhu sei useEffect er moddhe rakhe na . eta globally schedule hoy . tar mane holo pura component er execution sesh hoye mount houyar pore schedule theke setter function call hoy . then jodi oi setter function er dara oi component e thaka state variable change hoy tahole again component re-render hoy and again pura component dom update hoye mount hoy . 
+
+
+
+
+
+dependency array te amake sob somoy premitive value dite hobe . non-premitive sob somoy avoid korte hobe . jodi function array object amake use korte hoy tahole amake value gula derrived korte hobe . nahole amake react.memo or callback use kore kaj korte hobe . jate amake oproyojoni call ke thamaite pari 
+
+
+
+
+
+
+
+akhn ami ekta way dekhabo jetar dara amra useEffect ke avoid korte pari . niche sample code deya holo : 
+function App(){
+  const [count, setCount] = useState(0)
+
+  function handleClick(e){
+    setCount(count+1)
+  }
+
+  return (
+    <div>
+      <Child id={count} />
+      <button onClick={handleClick}>{count}</button>
+    </div>
+  );
+}
+
+function Child({ id }){
+  const [childCount, setChildCount] = useState(id)
+
+  useEffect(() => {
+    setChildCount(id)
+  }, [id])
+
+  return (
+    <div>Child Component! {childCount}</div>
+  )
+}
+---ekhane Child component er props id change hoileii Child component abar re-render hobe and Child Component er vitor useEffect use kora hoise karon ami chai id change hoile sei id amar childCount variable e reflect koruk . tar jonno Child component e useEffect use kora hoise . 
+but ami eta normal way te useEffect charao korte partam . kivabe ? 
+
+Sample Code : 
+function App(){
+  const [count, setCount] = useState(0)
+
+  function handleClick(e){
+    setCount(count+1)
+  }
+
+  return (
+    <div>
+      <Child key={count} id={count} />
+      <button onClick={handleClick}>{count}</button>
+    </div>
+  );
+}
+
+function Child({ id }){
+  const [childCount, setChildCount] = useState(id)
+
+  return (
+    <div>Child Component! {childCount}</div>
+  )
+}
+------ amra jani je kono component er key props change hoile sei component notun kore re-create hoy . tar mane oi component er state variable gula abar reset hoye default value set hoy . ami Child component er childCount e default value disi id . and Child Component call korar somoy key props er moddhe count pass kore disi . tai count change hoileii key props change hobe and Child component new create hobe and tar vitor sob state reset hobe . and protibar childCount id er update value niye reset hobe . etar maddhome ami useEffect ke certain time e avoid korte pari 
+
