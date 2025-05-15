@@ -47,7 +47,7 @@ function App() {
     return <h1>Data Not Found!</h1>
   }
 
-  return <div>{data.map((item) => <p>{item.title}</p>)}</div>;
+  return <div>{data.map((item) => <p key={item.id}>{item.title}</p>)}</div>;
 }
 
 export default App;
