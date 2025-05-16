@@ -1,21 +1,22 @@
 import React, { useState } from "react";
 import "./App.css";
 
-
-
 function App() {
-  const [fullName, setFullName] = useState("")
 
   return (
-    <div>
-      <input type="text" value={fullName} onChange={(e) => setFullName(e.target.value)} />
-      <MemoizedChild fullName={fullName} />
-      <h1>{fullName}</h1>
-    </div>
+    ``
   );
 }
 
-function Child({ fullName }) {
+function Form(){
+  const [color, setColor] = useState("")
+
+  return(
+    <input style={{backgroundColor: color}} type="text" value={color} onChange={(e) => setColor(e.target.value)} />
+  )
+}
+
+function Child() {
   console.log('Child component rendered');
 
   return (
@@ -24,13 +25,5 @@ function Child({ fullName }) {
     </div>
   );
 }
-
-const MemoizedChild = React.memo(Child, (prevProps, nextProps) => {
-  if(nextProps.fullName.length > 10) {
-    return false;
-  }else {
-    return true;
-  }
-});
 
 export default App;
