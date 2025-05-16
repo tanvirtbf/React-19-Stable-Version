@@ -1,8 +1,15 @@
 import { useEffect, useState } from "react";
 import "./App.css";
+import Parent from "./components/Parent";
+
+let firstTimeCall = true
 
 function App() {
   const [count, setCount] = useState(0)
+
+  function getData(){
+    console.log('Get Data!');
+  }
 
   function handleIncrease(){
     setCount(count+1)
@@ -14,11 +21,17 @@ function App() {
     console.log(count);
   }
 
-  useEffect(() => {
-    console.log('App Component Mount!');
+  const controller = new AbortController();
+  const signal = controller.signal;
+  fetch("gnasdg", {signal: signal})
 
+  useEffect(() => {
+
+    if(firstTimeCall){
+      getData();
+    }
     return () => {
-      console.log('App Component Unmount');
+      signal.aborted();
     }
   }, [])
 
@@ -26,31 +39,10 @@ function App() {
 
   return (
     <div>
-      {mod2 && <Child />}
+      {/* {mod2 && <Parent />} */}
       <button onClick={handleIncrease}>Increase {count}</button>
     </div>
   );
-}
-
-function Child(){
-  useEffect(() => {
-    console.log('Child Component Mount!');
-  }, [])
-  return (
-    <h1>
-      <GrandChild />
-      Hello Child!</h1>
-  )
-}
-
-function GrandChild(){
-  useEffect(() => {
-    console.log('Grand Child Mount!');
-  }, [])
-
-  return (
-    <h4>Grand Child</h4>
-  )
 }
 
 

@@ -13,3 +13,6 @@ amra jokhon nested theke nested way te component jora lagai tokhon sobcheye nich
 
 3. child and parent er moddhe konta age unmount hoy ? 
 unmount er khetre sobar top componenet theke unmount start hoy then sobar last e sobcheye nicher child component unmount hoy . 
+
+
+
