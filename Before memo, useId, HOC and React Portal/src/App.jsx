@@ -2,22 +2,24 @@ import React, { useState } from "react";
 import "./App.css";
 
 function App() {
-
   return (
-    ``
+    <Form />
   );
 }
 
-function Form(){
-  const [color, setColor] = useState("")
+function Form() {
+  const [color, setColor] = useState("");
 
-  return(
-    <input style={{backgroundColor: color}} type="text" value={color} onChange={(e) => setColor(e.target.value)} />
-  )
+  return (
+    <div>
+      <input style={{ backgroundColor: color }} type="text" value={color} onChange={(e) => setColor(e.target.value)} />
+      <Child />
+    </div>
+  );
 }
 
 function Child() {
-  console.log('Child component rendered');
+  console.log("Child component rendered");
 
   return (
     <div>
