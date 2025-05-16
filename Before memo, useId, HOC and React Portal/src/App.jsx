@@ -3,24 +3,30 @@ import "./App.css";
 
 function App() {
   return (
-    <Form />
+    <Form>
+      <Child />
+    </Form>
   );
 }
 
-function Form() {
+function Form({ children }) {
   const [color, setColor] = useState("");
 
   return (
-    <div>
-      <input style={{ backgroundColor: color }} type="text" value={color} onChange={(e) => setColor(e.target.value)} />
-      <Child />
+    <div style={{ backgroundColor: color }}>
+      <input
+        style={{ backgroundColor: color }}
+        type="text"
+        value={color}
+        onInput={(e) => setColor(e.target.value)}
+      />
+      {children}
     </div>
   );
 }
 
 function Child() {
-  console.log("Child component rendered");
-
+  console.log("Rendering Child");
   return (
     <div>
       <h1>Child</h1>
