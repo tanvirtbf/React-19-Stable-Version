@@ -157,6 +157,40 @@ const Child = () => {
   )
 }
 
+const GrandChild = () => {
+  console.log('Grand Child Rendered');
+  return (
+    <div>
+      <h2>Grand Child Component</h2>
+    </div>
+  )
+}
+--------- ekhane Child component jokhon MyContext.Provider er value te pass kora state variable change korlo tokhon er vitor thaka sob component re-render hobe . jodio Child component amniteo re-render houyar kotha . karon Child component nijeii state change korche setter function diye . kintu GrandChild to kisuii kortese na . tahole etao kno re-render hobe bar bar ? 
+
+eta amra chaile React.memo diye solve korte pari . jodi amra GrandChild ke React.memo diye wrap kore feli tahole to re-rendering isshue ta r hobe na . tahole cholen solve kore feli : 
+
+sample code : 
+function App() {
+  const [state, setState] = useState(0)
+  return (
+    <MyContext.Provider value={{ state, setState}}>
+      <GrandChild />
+      <Child />
+    </MyContext.Provider>
+  );
+}
+
+const Child = () => {
+  const {state, setState} = useContext(MyContext)
+
+  return (
+    <div>
+      {state}
+      <h2 onClick={() => setState((prev) => prev+1)}>Child Component</h2>
+    </div>
+  )
+}
+
 const GrandChild = memo( () => {
   console.log('Grand Child Rendered');
   return (
@@ -165,15 +199,83 @@ const GrandChild = memo( () => {
     </div>
   )
 })
---------- ekhane Child component jokhon MyContext.Provider er value te pass kora state variable change korlo tokhon er vitor thaka sob component re-render hobe . jodio Child component amniteo re-render houyar kotha . karon Child component nijeii state change korche setter function diye . kintu GrandChild to kisuii kortese na . tahole etao kno re-render hobe bar bar ? 
+------- akhn r GrandChild re-render hobe na barbar state change holeo . 
+
+kintu jodi erokom 100-200 component thake ami ki tahole sob gula memo diye re-rending problem solve korbo ? 
+
+shortcut and optimized solution holo children props design pattern 
+niche eta diye solve kora hocche : 
+
+
+sample code : 
+const MyContext = React.createContext(null);
+
+function App() {
+  return (
+    <MyContextProvider>
+      <GrandChild />
+      <Child />
+    </MyContextProvider>
+  );
+}
+
+function MyContextProvider({ children }) {
+  const [state, setState] = useState(0)
+  return (
+    <MyContext.Provider value={{ state, setState }}>
+      {children}
+    </MyContext.Provider>
+  )
+}
+
+const Child = () => {
+  const {state, setState} = useContext(MyContext)
+
+  return (
+    <div>
+      {state}
+      <h2 onClick={() => setState((prev) => prev+1)}>Child Component</h2>
+    </div>
+  )
+}
+
+const GrandChild = () => {
+  console.log('Grand Child Rendered');
+  return (
+    <div>
+      <h2>Grand Child Component</h2>
+    </div>
+  )
+}
+--------- ekhane extra ekta provider component banaiya ekhane children akare sob accept kora hocche . tai extra re-render isshue theke bachte parlam 
 
 
 
 
 
+-------------------------------------
 
+closure example : 
+function dataManager(data){
+    let myData = data;
 
+    function updateData(val){
+        myData = val
+    }
+    function getData(){
+        return myData
+    }
+    return [getData, updateData] 
+}
 
+const [getData, setData] = dataManager("JS")
+getData() // JS
+
+setData("Tanvir")
+getData() // Tanvir
+
+setData("Sadia is a Good Girl")
+getData() // Sadia is a Good Gird
 
 
 
