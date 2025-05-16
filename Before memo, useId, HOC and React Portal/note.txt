@@ -1,4 +1,4 @@
-question : amra kivabe React.memo avoid korte pari ? 
+question : amra kivabe React.memo avoid korte pari ? -------------------
 answer : 2 way te avoid korte pari : 
 
 sample code : 
@@ -129,6 +129,43 @@ karon holo children jehetu as a props akare render hocche and props tar consumer
 
 
 
+----------------------------------------------
+
+context provider e re-rendering isshue ase . provider er moddhe thaka component gula hudai re-rendering hoite thake jodi context e state variable change hoy . eta kivabe solve korbo ? 
+answer holo children props design pattern diye . niche amra bishoy ta dekhi...
+
+sample code : 
+const MyContext = React.createContext(null);
+function App() {
+  const [state, setState] = useState(0)
+  return (
+    <MyContext.Provider value={{ state, setState}}>
+      <GrandChild />
+      <Child />
+    </MyContext.Provider>
+  );
+}
+
+const Child = () => {
+  const {state, setState} = useContext(MyContext)
+
+  return (
+    <div>
+      {state}
+      <h2 onClick={() => setState((prev) => prev+1)}>Child Component</h2>
+    </div>
+  )
+}
+
+const GrandChild = memo( () => {
+  console.log('Grand Child Rendered');
+  return (
+    <div>
+      <h2>Grand Child Component</h2>
+    </div>
+  )
+})
+--------- ekhane Child component jokhon MyContext.Provider er value te pass kora state variable change korlo tokhon er vitor thaka sob component re-render hobe . jodio Child component amniteo re-render houyar kotha . karon Child component nijeii state change korche setter function diye . kintu GrandChild to kisuii kortese na . tahole etao kno re-render hobe bar bar ? 
 
 
 
