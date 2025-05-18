@@ -8,12 +8,13 @@ import Cart from './pages/cart'
 function App() {
 
   const [selectedProduct, setSelectedProduct] = React.useState(null)
+  const [isCartPage, setIsCartPage] = React.useState(false)
 
   return (
     <div>
       <List />
-      <Detail />
-      <Cart />
+      {selectedProduct && <Detail />}
+      {isCartPage && <Cart />}
     </div>
   )
 }
