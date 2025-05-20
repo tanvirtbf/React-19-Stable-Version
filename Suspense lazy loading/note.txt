@@ -1,0 +1,316 @@
+question : amra kivabe React.memo avoid korte pari ? -------------------
+answer : 2 way te avoid korte pari : 
+
+sample code : 
+function App() {
+  const [color, setColor] = useState("")
+
+  return (
+    <div>
+      <input style={{backgroundColor: color}} type="text" value={color} onInput={(e) => setColor(e.target.value)} />
+      <Child />
+    </div>  
+  );
+}
+
+function Child(){
+  console.log('Rendering Child');
+  return (
+    <div>
+      <h1>Child</h1>
+    </div>
+  )
+}
+--- upore ami jotobar input e kichu type korbo totobar Child component re-render hobe . kintu keno ? karon App component er jokhon state variable change hoy tokhon App component re-render hoy . re-render houyar somoy jokhon jsx e dhuke tokhon er vitor thaka Child component o re-render kore . karon react vabe je maybe Child component eo kono kisu change hoise . 
+tahole eta amra kivabe solve korte pari ? karon amar to Child Component re-render er dorkar nai . solution holo React.memo diye Child Component ke wrap kore memoized kora jate Child Component unnesseary re-render na hoy . tahole niche er code deya holo : 
+
+Sample code : 
+function App() {
+  const [color, setColor] = useState("")
+
+  return (
+    <div>
+      <input style={{backgroundColor: color}} type="text" value={color} onInput={(e) => setColor(e.target.value)} />
+      <Child />
+    </div>  
+  );
+}
+
+const Child = React.memo(() => {
+  console.log('Rendering Child');
+  return (
+    <div>
+      <h1>Child</h1>
+    </div>
+  )
+})
+
+---- akhn kintu Child Component r re-render hobe na jodi input value change hoy . tahole amra problem ta solve kore fellam . 
+
+kintu amra ki React.memo chara onno way te solve korte partam na ? 
+obosshoi partam . 
+kintu kivabe ? 
+1. Atomic Design pattern diye
+2. children props design pattern diye 
+
+------ Atomic Design Patter ----------
+
+sample code : 
+function App() {
+  return (
+    <div>
+      <Form />
+      <Child />
+    </div>  
+  );
+}
+
+function Form(){
+  const [color, setColor] = useState("")
+  return (
+    <div>
+      <input style={{backgroundColor: color}} type="text" value={color} onInput={(e) => setColor(e.target.value)} />
+    </div>
+  )
+}
+
+function Child(){
+  console.log('Rendering Child');
+  return (
+    <div>
+      <h1>Child</h1>
+    </div>
+  )
+}
+------ ekhane Atomic way te extra ekta component Form create kore input and state variable Form er moddhe rakhse . and Child component ke ami App er moddhe rakhsi . ekhn jodi state variable change hoy tahole Form component er moddhe state variable thakay only Form component re-render hobe . Child to Form er moddhe nai . App er moddhe . tai Child Re-render hobe na . evabe boro boro application e amra atomic design pattern follow kore React.memo use na koreo extra re-render theke bachte pari . 
+
+kintu ekhaneo problem ashte pare . kintu kivabe ? 
+dhoren color variable jodi amake App er moddheo use kora lage ? tahole to App o re-render hobe jokhon Form er moddhe thaka state change hobe . 
+
+tahole amra sekhetre children props design pattern use korte pari . kintu kivabe ? 
+sample code : 
+
+function App() {
+  return (
+    <Form>
+      <Child />
+    </Form>
+  );
+}
+
+function Form({ children }) {
+  const [color, setColor] = useState("");
+
+  return (
+    <div style={{ backgroundColor: color }}>
+      <input
+        style={{ backgroundColor: color }}
+        type="text"
+        value={color}
+        onInput={(e) => setColor(e.target.value)}
+      />
+      {children}
+    </div>
+  );
+}
+
+function Child() {
+  console.log("Rendering Child");
+  return (
+    <div>
+      <h1>Child</h1>
+    </div>
+  );
+}
+----- ekhane Child component ta Form er moddhe children akare pathano hoise . akhn Form component er vitor state change hoileo {children} er moddhe thaka Child component re-render hobe na . karon ki ? 
+karon ta jana onk important . 
+karon holo children jehetu as a props akare render hocche and props tar consumer hocche Form component . mane holo props ta Form component recieve koreche . ekhane Form component reciever . r jei component kono props recieve kore sei component kokhono sei props change korte pare na . eta react er rules er baire . props sudhu parent component change korte parbe . tai children props kokhono state variable er change er jonno re-render hoy na . karon re-render maneii hoilo je jodi kono kisu change hoy aijonno . 
+
+
+
+
+----------------------------------------------
+
+context provider e re-rendering isshue ase . provider er moddhe thaka component gula hudai re-rendering hoite thake jodi context e state variable change hoy . eta kivabe solve korbo ? 
+answer holo children props design pattern diye . niche amra bishoy ta dekhi...
+
+sample code : 
+const MyContext = React.createContext(null);
+function App() {
+  const [state, setState] = useState(0)
+  return (
+    <MyContext.Provider value={{ state, setState}}>
+      <GrandChild />
+      <Child />
+    </MyContext.Provider>
+  );
+}
+
+const Child = () => {
+  const {state, setState} = useContext(MyContext)
+
+  return (
+    <div>
+      {state}
+      <h2 onClick={() => setState((prev) => prev+1)}>Child Component</h2>
+    </div>
+  )
+}
+
+const GrandChild = () => {
+  console.log('Grand Child Rendered');
+  return (
+    <div>
+      <h2>Grand Child Component</h2>
+    </div>
+  )
+}
+--------- ekhane Child component jokhon MyContext.Provider er value te pass kora state variable change korlo tokhon er vitor thaka sob component re-render hobe . jodio Child component amniteo re-render houyar kotha . karon Child component nijeii state change korche setter function diye . kintu GrandChild to kisuii kortese na . tahole etao kno re-render hobe bar bar ? 
+
+eta amra chaile React.memo diye solve korte pari . jodi amra GrandChild ke React.memo diye wrap kore feli tahole to re-rendering isshue ta r hobe na . tahole cholen solve kore feli : 
+
+sample code : 
+function App() {
+  const [state, setState] = useState(0)
+  return (
+    <MyContext.Provider value={{ state, setState}}>
+      <GrandChild />
+      <Child />
+    </MyContext.Provider>
+  );
+}
+
+const Child = () => {
+  const {state, setState} = useContext(MyContext)
+
+  return (
+    <div>
+      {state}
+      <h2 onClick={() => setState((prev) => prev+1)}>Child Component</h2>
+    </div>
+  )
+}
+
+const GrandChild = memo( () => {
+  console.log('Grand Child Rendered');
+  return (
+    <div>
+      <h2>Grand Child Component</h2>
+    </div>
+  )
+})
+------- akhn r GrandChild re-render hobe na barbar state change holeo . 
+
+kintu jodi erokom 100-200 component thake ami ki tahole sob gula memo diye re-rending problem solve korbo ? 
+
+shortcut and optimized solution holo children props design pattern 
+niche eta diye solve kora hocche : 
+
+
+sample code : 
+const MyContext = React.createContext(null);
+
+function App() {
+  return (
+    <MyContextProvider>
+      <GrandChild />
+      <Child />
+    </MyContextProvider>
+  );
+}
+
+function MyContextProvider({ children }) {
+  const [state, setState] = useState(0)
+  return (
+    <MyContext.Provider value={{ state, setState }}>
+      {children}
+    </MyContext.Provider>
+  )
+}
+
+const Child = () => {
+  const {state, setState} = useContext(MyContext)
+
+  return (
+    <div>
+      {state}
+      <h2 onClick={() => setState((prev) => prev+1)}>Child Component</h2>
+    </div>
+  )
+}
+
+const GrandChild = () => {
+  console.log('Grand Child Rendered');
+  return (
+    <div>
+      <h2>Grand Child Component</h2>
+    </div>
+  )
+}
+--------- ekhane extra ekta provider component banaiya ekhane children akare sob accept kora hocche . tai extra re-render isshue theke bachte parlam 
+
+
+
+
+
+-------------------------------------
+
+closure example : 
+function dataManager(data){
+    let myData = data;
+
+    function updateData(val){
+        myData = val
+    }
+    function getData(){
+        return myData
+    }
+    return [getData, updateData] 
+}
+
+const [getData, setData] = dataManager("JS")
+getData() // JS
+
+setData("Tanvir")
+getData() // Tanvir
+
+setData("Sadia is a Good Girl")
+getData() // Sadia is a Good Gird
+
+
+
+
+
+
+
+
+
+
+
+
+
+🧠 React.memo vs Better Design: Think Before You Memoize
+
+আমি অনেক সময় দেখি, কিছু হলেই component-কে React.memo() দিয়ে wrap করে ফেলা হয়—just to prevent re-renders.
+
+❗কিন্তু আমরা ভুলে যাই, memoization হচ্ছে optimization-এর last stage, not the first step!
+
+👉 Instead, consider solving the problem with better component design.
+
+🔹 ১. Atomic Design Pattern:
+Component-কে ছোট ছোট meaningful unit-এ ভেঙে ফেলুন। এতে কম্পোনেন্ট কম re-render হবে naturally, even without memo.
+
+🔹 ২. children Props Pattern:
+ধরুন আপনি এমন একটা component তৈরি করছেন, যেটা চাচ্ছেন না প্রতিবার parent re-render হলেই re-render হোক।
+👉 এই ক্ষেত্রে, ওই component-কে children হিসেবে pass করুন অন্য component-এর ভিতরে। এতে করে শুধু parent state পরিবর্তন হলেও child re-render হবে না—React composition এইভাবেই কাজ করে।
+
+🧪 Optimization shortcut নয়, বরং proper composition এবং smart design-ই হচ্ছে real performance gain-এর source.
+
+➡️ So, next time you want to use React.memo(), ask yourself:
+
+Can I solve this through better component structure or children-based composition?
+
+💬 আপনারা কি ভাবেন এ ব্যাপারে?
+আপনি কি নিয়মিত memo ব্যবহার করেন, না কি আগে alternative গুলো চেষ্টা করেন?
+
+#ReactJS #ReactMemo #Performance #ComponentDesign #AtomicDesign #ChildrenProps #FrontendTips #ReactOptimization
