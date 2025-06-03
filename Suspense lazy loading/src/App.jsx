@@ -1,28 +1,39 @@
-import React, { memo, useContext, useState } from "react";
+import { lazy, Suspense, useState } from "react";
 import "./App.css";
-import Parent from "./components/Parent";
-import Child from "./components/Child";
+
 
 const App = () => {
-  const [showParent, setShowParent] = useState(false)
-  const [showChild, setShowChild] = useState(false)
-
-  function toggleParent(){
-    setShowParent(!showParent)
-  }
-
-  function toggleChild(){
-    setShowChild(!showChild)
-  }
 
   return (
     <div>
-      <button onClick={toggleParent}>Toggle Parent</button>
-      <button onClick={toggleChild}>Toggle Child</button>
-       <Parent />
-       <Child />
+      <Suspense fallback={"Loading..."}>
+        <DummyParent />
+      </Suspense>
+
     </div>
   )
+}
+
+function fetchData(){
+  return new Promise((resolve) => {
+    setTimeout(() => {
+      resolve("Data Fetched!")
+    }, 4000)
+  })
+}
+
+let promise;
+function DummyParent(){
+
+  const [myData, setMyData] = useState(null)
+
+  throw fetchData().then((data) => {
+    setMyData(data)
+  })
+
+  if(!myData) return null
+
+  return (<div>Dummy Parent {myData}</div>)
 }
 
 export default App;
