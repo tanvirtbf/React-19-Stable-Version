@@ -3,7 +3,7 @@ import './App.css'
 
 function App() {
 
-  const {count, increase, decrease} = counterHooks()
+  const {count, increase, decrease} = CounterHooks() 
 
   return (
     <div>
@@ -14,7 +14,7 @@ function App() {
   )
 }
 
-function counterHooks(){
+function CounterHooks(){
   const [count, setCount] = useState(5)
   function increase(){
     setCount(count+1)
