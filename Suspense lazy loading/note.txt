@@ -1,2 +1,7 @@
 Question : Suspense under the hood kivabe chole ? 
 
+kivabe react bujhte pare component ready ase ? 
+with the help of Promises 
+
+const Parent = lazy(() => import("./component/Parent"))
+- ekhane import return kore thake ekta promise . tarpor react check kore je jei promise ta return hoise seta ki resolve hoise ? jodi resolve hoye thake tahole component is ready . 
