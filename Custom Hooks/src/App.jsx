@@ -4,6 +4,8 @@ import './App.css'
 function App() {
   const [value, setValue] = useState(3)
 
+  myHooks()
+
   function handlePlus(){
     setValue((prevState) =>{
       if(prevState===5){
@@ -29,6 +31,16 @@ function App() {
       {value}
       <button onClick={handleMinus}>-</button>
     </div>
+  )
+}
+
+function myHooks(){
+  console.log('Inside My Hooks');
+  const [x, setX] = useState(1)
+
+  return (
+    <>
+    </>
   )
 }
 
