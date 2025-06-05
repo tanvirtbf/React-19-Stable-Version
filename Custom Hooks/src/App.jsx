@@ -2,46 +2,27 @@ import { useState } from 'react'
 import './App.css'
 
 function App() {
-  const [value, setValue] = useState(3)
 
-  myHooks()
-
-  function handlePlus(){
-    setValue((prevState) =>{
-      if(prevState===5){
-        return 5
-      }else {
-        return value+1
-      }
-    } )
-  }
-  function handleMinus(){
-    setValue((prevState) =>{
-      if(prevState===0){
-        return 0
-      }else {
-        return value-1
-      }
-    })
-  }
+  const {count, increase, decrease} = counterHooks()
 
   return (
     <div>
-      <button onClick={handlePlus}>+</button>
-      {value}
-      <button onClick={handleMinus}>-</button>
+      <button onClick={increase}>+</button>
+      {count}
+      <button onClick={decrease}>-</button>
     </div>
   )
 }
 
-function myHooks(){
-  console.log('Inside My Hooks');
-  const [x, setX] = useState(1)
-
-  return (
-    <>
-    </>
-  )
+function counterHooks(){
+  const [count, setCount] = useState(5)
+  function increase(){
+    setCount(count+1)
+  }
+  function decrease(){
+    setCount(count-1)
+  }
+  return {count, increase, decrease}
 }
 
 export default App
